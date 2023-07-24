@@ -1,5 +1,6 @@
 
 const fs = require('fs');
+import { appendCsvData, deleteById } from '../../lib/csv-data';
 
 function writeTextToFile(title, content) {
     // Get today's date
@@ -27,20 +28,24 @@ function writeTextToFile(title, content) {
 export default function handler(req, res) {
     if (req.method === 'POST') {
         const { title, content } = req.body;
-        writeTextToFile(title, content);
+        // writeTextToFile(title, content);
+        appendCsvData(title, content);
 
         return res.status(200).json({ message: 'Form submitted successfully!' });
     } else if (req.method === 'DELETE') {
+        // const { id } = req.body;
+        // const filePath = `posts/${id}.md`;
+        // console.log(filePath);
+        // fs.unlink(filePath, (err) => {
+        //     if (err) {
+        //         console.error('Error deleting the file:', err);
+        //     } else {
+        //         console.log('File deleted successfully.');
+        //     }
+        // });
+
         const { id } = req.body;
-        const filePath = `posts/${id}.md`;
-        console.log(filePath);
-        fs.unlink(filePath, (err) => {
-            if (err) {
-                console.error('Error deleting the file:', err);
-            } else {
-                console.log('File deleted successfully.');
-            }
-        });
+        deleteById(id);
         return res.status(202).json({});
     }
     else {

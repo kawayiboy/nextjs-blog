@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
-import { getSortedPostsData } from '../lib/posts';
+// import { getSortedPostsData } from '../lib/posts';
+import { readCsvData } from '../lib/csv-data';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import Date from '../components/date';
@@ -9,12 +10,16 @@ import { useRouter } from 'next/navigation';
 
 
 export async function getStaticProps() {
-    const allPostsData = getSortedPostsData();
+    // const allPostsData = getSortedPostsData();
+    // console.log(allPostsData);
+    const allPostsData = await readCsvData();
+    console.log(allPostsData);
     return {
         props: {
             allPostsData,
         },
     };
+
 }
 
 const handleDelPost = async (id, onSuccess) => {
