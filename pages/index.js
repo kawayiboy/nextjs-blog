@@ -2,18 +2,20 @@ import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 // import { getSortedPostsData } from '../lib/posts';
-import { readCsvData } from '../lib/csv-data';
+// import { readCsvData } from '../lib/csv-data';
+import { getData } from '../lib/mysql_dao';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import Date from '../components/date';
 import { useRouter } from 'next/navigation';
 
 
+
 export async function getStaticProps() {
     // const allPostsData = getSortedPostsData();
     // console.log(allPostsData);
-    const allPostsData = await readCsvData();
-    console.log(allPostsData);
+    const allPostsData = await getData();
+    console.log('allPostsData', allPostsData);
     return {
         props: {
             allPostsData,

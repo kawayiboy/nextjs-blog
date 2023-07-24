@@ -13,6 +13,8 @@
     "csv-writer": "^1.6.0",
     "date-fns": "^2.30.0",
     "gray-matter": "^4.0.3",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.5.2",
     "next": "latest",
     "oracledb": "^6.0.3",
     "react": "18.2.0",

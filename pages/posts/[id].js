@@ -3,7 +3,8 @@ import Layout from '../../components/layout';
 import Head from 'next/head';
 import Date from '../../components/date';
 import utilStyles from '../../styles/utils.module.css';
-import { readCsvDataById, getAllIds } from '../../lib/csv-data';
+// import { readCsvDataById, getAllIds } from '../../lib/csv-data';
+import { findDataById,getAllIds } from '../../lib/mysql_dao';
 
 export default function Post({ postData }) {
     return (
@@ -42,9 +43,21 @@ export default function Post({ postData }) {
 //     };
 //   }
 
+// csv get all ids
+// export async function getStaticPaths() {
+//     const paths = await getAllIds();
+//     const pmap = paths.map(item => ({ params: {id: item}}));
+//     console.log(`pmap: ${pmap}`);
+//     return {
+//         paths: pmap,
+//         fallback: false,
+//     };
+// }
+
+
 export async function getStaticPaths() {
     const paths = await getAllIds();
-    const pmap = paths.map(item => ({ params: {id: item}}));
+    const pmap = paths.map(item => ({ params: item }));
     console.log(`pmap: ${pmap}`);
     return {
         paths: pmap,
@@ -52,9 +65,9 @@ export async function getStaticPaths() {
     };
 }
 
-
 export async function getStaticProps({ params }) {
-    const postData = await readCsvDataById(params.id);
+    // const postData = await readCsvDataById(params.id);
+    const postData = await findDataById(params.id);
     console.log(`postData: ${postData}`);
     return {
       props: {

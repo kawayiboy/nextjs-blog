@@ -1,6 +1,8 @@
 
 const fs = require('fs');
-import { appendCsvData, deleteById } from '../../lib/csv-data';
+// import { appendCsvData, deleteById } from '../../lib/csv-data';
+
+import { insertData,deleteData } from '../../lib/mysql_dao';
 
 function writeTextToFile(title, content) {
     // Get today's date
@@ -25,11 +27,12 @@ function writeTextToFile(title, content) {
 }
 
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
     if (req.method === 'POST') {
         const { title, content } = req.body;
         // writeTextToFile(title, content);
-        appendCsvData(title, content);
+        // appendCsvData(title, content);
+        await insertData(title, content);
 
         return res.status(200).json({ message: 'Form submitted successfully!' });
     } else if (req.method === 'DELETE') {
@@ -45,7 +48,8 @@ export default function handler(req, res) {
         // });
 
         const { id } = req.body;
-        deleteById(id);
+        // deleteById(id);
+        await deleteData(id);
         return res.status(202).json({});
     }
     else {
