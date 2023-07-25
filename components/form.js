@@ -1,5 +1,6 @@
 
 import { useState } from 'react';
+import Editor from 'react-simple-wysiwyg';
 
 const Form = ({apiUrl, onSuccess}) => {
     const [title, setTitle] = useState('');
@@ -45,14 +46,7 @@ const Form = ({apiUrl, onSuccess}) => {
         </div>
         <div className="mb-3">
           <label htmlFor="content" className="form-label">Content</label>
-          <textarea
-            className="form-control"
-            id="content"
-            rows="4"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            required
-          ></textarea>
+            <Editor containerProps={{ style: { resize: 'vertical', height: '300px' } }} value={content} onChange={(e) => setContent(e.target.value)} />
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>

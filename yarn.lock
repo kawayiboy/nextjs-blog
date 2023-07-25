@@ -1320,6 +1320,11 @@ react-dom@18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
+react-simple-wysiwyg@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/react-simple-wysiwyg/-/react-simple-wysiwyg-2.2.5.tgz#804881576ef81e9e685a49002ba6f4ba7045e81c"
+  integrity sha512-cNut1O8wAavVJKi3cobLlM3VIjiJG4clBSJDEz4Rgc6V+ww7bmjp8KGTuJJw79ZAsJDYGfN1ic/80u2et8GZZg==
+
 react@18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
